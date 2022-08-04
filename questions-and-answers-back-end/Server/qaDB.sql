@@ -26,6 +26,7 @@ SET date_written_placeholder = TO_CHAR(to_timestamp(date_written / 1000), 'YYYY-
 ALTER TABLE question RENAME COLUMN date_written TO date_written_placeholder_2;
 ALTER TABLE question RENAME COLUMN date_written_placeholder TO date_written;
 ALTER TABLE question DROP COLUMN date_written_placeholder_2;
+-- ALTER TABLE question ALTER date_written TYPE TIMESTAMP USING date_written::timestamp;
 
 -- recasting the reported
 ALTER TABLE question ALTER COLUMN reported DROP DEFAULT;
@@ -53,7 +54,7 @@ COPY "answer" from '/Users/T-Spoon/SDC - Project Naboo/questions-and-answers-bac
 -- Adding the new column
 ALTER TABLE answer ADD date_written_placeholder TEXT;
 
--- Updating the question
+-- Updating the answer
 UPDATE answer
 SET date_written_placeholder = TO_CHAR(to_timestamp(date_written / 1000), 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"');
 
@@ -61,6 +62,7 @@ SET date_written_placeholder = TO_CHAR(to_timestamp(date_written / 1000), 'YYYY-
 ALTER TABLE answer RENAME COLUMN date_written TO date_written_placeholder_2;
 ALTER TABLE answer RENAME COLUMN date_written_placeholder TO date_written;
 ALTER TABLE answer DROP COLUMN date_written_placeholder_2;
+-- ALTER TABLE answer ALTER date_written TYPE TIMESTAMP USING date_written::timestamp;
 
 -- recasting the reported
 ALTER TABLE answer ALTER COLUMN reported DROP DEFAULT;

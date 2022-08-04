@@ -28,6 +28,7 @@ creds.js
 *.tsv
 *.tsv.gz
 *.xlsx
+*.lock
 
 
 # Mac/OSX
@@ -172,3 +173,7 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+#my database stuff
+qaDB.sql
+qaDBtest.sql
