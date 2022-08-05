@@ -80,3 +80,10 @@ CREATE TABLE answer_photo(
 );
 
 COPY "answer_photo" from '/Users/T-Spoon/SDC - Project Naboo/questions-and-answers-back-end/Atelier Data Set/answers_photos.csv' DELIMITER ',' CSV HEADER;
+
+
+-- Create indexes, I think these are the best ones
+CREATE INDEX CONCURRENTLY product_id_idx ON question(product_id);
+CREATE INDEX CONCURRENTLY question_id_idx ON answer(question_id);
+CREATE INDEX CONCURRENTLY answer_id_idx ON answer_photo(answer_id);
+

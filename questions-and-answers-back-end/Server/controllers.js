@@ -5,8 +5,8 @@ const getQuestions = async (req, res) => {
     let productIdString = req.query.product_id;
     let productIdNum = parseInt(req.query.product_id, 10);
     let count = parseInt(req.query.count, 10) || 5;
-    var page = parseInt(req.query.page, 10) - 1 || 1;
-    page = page * count;
+    let pageCount = parseInt(req.query.page, 10) || 1;
+    let pageOffset = (pageCount - 1)* count;
     const allQuestions = await pool.query(
     `SELECT $1 AS product_id,
     (SELECT json_agg(row_to_json(t)) AS results
@@ -43,7 +43,7 @@ const getQuestions = async (req, res) => {
         LIMIT $4
         OFFSET $5
       ) t)
-    FROM question WHERE question.product_id = $3 GROUP BY question.product_id;`, [productIdString, productIdNum, productIdNum, count, page]);
+    FROM question WHERE question.product_id = $3 GROUP BY question.product_id;`, [productIdString, productIdNum, productIdNum, count, pageOffset]);
     res.json(allQuestions.rows);
   } catch (error) {
     console.error(error.message)
