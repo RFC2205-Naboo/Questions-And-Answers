@@ -3,11 +3,11 @@ const Pool = require("pg").Pool;
 console.log("In the database")
 
 const pool = new Pool({
-  user: "T-Spoon",
-  password: "password",
-  host: "localhost",
-  port: 5432,
-  database: "atelierqa"
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  host: process.env.HOST,
+  port: process.env.PORT,
+  database: process.env.DATABASE
 })
 
 module.exports = pool;
